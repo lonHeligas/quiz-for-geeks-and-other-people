@@ -1,11 +1,33 @@
+var quizTitle = document.querySelector("#title");
+var quizInst = document.querySelector("#instructions");
+var quizAnswers = document.querySelector("#options");
+var quizQuestion = document.querySelector("#questions");
+var quizTimer = document.querySelector("#timer");
+var highScores = document.querySelector('highscores')
+var startButton = document.querySelector("#start");
 
+function introPage(){
+  // primary intro page
+  quizTitle.textContent = 'Coding Quiz Challenge';
+  // console.log("hello world");
+  // console.log(quizTitle)
+  
+  quizInst.textContent = "Try to answer the following questions about geeky things within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds! Oh noes!"
+  startButton.textContent = "Start!"
+  startButton.addEventListener("click", function(){
+    quizRunner();
+  })
+  // quizRunner ();
+}
 
+function quizRunner(){
+  // blank out the prior text fields
+  quizTitle.textContent = ""
+  quizInst.textContent = "";
+  
+}
 
-
-
-
-
-
+introPage()
 
 
 
@@ -35,3 +57,4 @@
 //  game is over
 // prompt user to save initials and score
 // which will persist in reloading the page
+// startQuiz ();
