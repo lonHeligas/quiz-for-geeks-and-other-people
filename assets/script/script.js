@@ -25,6 +25,7 @@ function quizRunner(){
   quizTitle.textContent = ""
   quizInst.textContent = "";
   
+
 }
 
 introPage()
