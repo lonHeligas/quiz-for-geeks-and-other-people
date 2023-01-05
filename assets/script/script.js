@@ -6,7 +6,17 @@ var quizTimer = document.querySelector("#timer");
 var highScores = document.querySelector('highscores')
 var startButton = document.querySelector("#start");
 
+
+var allQuestions = [
+  { questionNumber: "1", answer1: "What", answer2: "Where", answer3: "Why", correctAnswer: 2},
+  { questionNumber: "2", answer1: "What", answer2: "Where", answer3: "Why", correctAnswer: 3},
+  { questionNumber: "3", answer1: "What", answer2: "Where", answer3: "Why", correctAnswer: 1}
+]
+
+
 function introPage(){
+  // console.log(allQuestions)
+
   // primary intro page
   quizTitle.textContent = 'Coding Quiz Challenge';
   // console.log("hello world");
@@ -21,10 +31,15 @@ function introPage(){
 }
 
 function quizRunner(){
-  // blank out the prior text fields
+  // startTheTimer();
+
+  // blank out the prior text fields and start button
+  
   quizTitle.textContent = ""
   quizInst.textContent = "";
-  
+
+
+
 
 }
 
