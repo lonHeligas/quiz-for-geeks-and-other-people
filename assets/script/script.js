@@ -6,6 +6,7 @@ const quizAnswers = document.querySelector("#answers");
 const quizTimer = document.querySelector("#timer");
 const highScores = document.querySelector('highscores')
 const startButton = document.querySelector("#start");
+const quizFeedback = document.querySelector("#feedback");
 let quizButton = document.createElement("button");
 
 let currentScore = 0;
@@ -54,7 +55,7 @@ function startTimer(){
     console.log(secondsLeft);
     quizTimer.innerHTML = `Time: ${secondsLeft}`;
     if (secondsLeft === 0){
-      console.log("time's up!");
+      // console.log("time's up!");
       // go to the show your score and put your name in screen
       clearInterval(countdown);
       gameOver();
@@ -68,7 +69,7 @@ function startTimer(){
 }
 
 function quizRunner(){
-  console.log("You are in quizRunner");
+  // console.log("You are in quizRunner");
   // clears out title and instructions
   
   quizTitle.textContent = "";
@@ -77,7 +78,7 @@ function quizRunner(){
   // allQuestions[2].answer1
 
   allQuestions[currentQuestion]  
-  questionNum.textContent = `Question Numero ${currentQuestion+1}`;  
+  questionNum.textContent = `Question: ${currentQuestion+1}`;  
   quizQuestion.textContent = allQuestions[0].questionText;
   // console.log(quizQuestion)
   // displays the question answers from the array
@@ -93,14 +94,18 @@ function quizRunner(){
 }
 
 function createButton(theText){
+  // console.warn("You are in createButton()");
+  // console.warn(theText);
   let myBtn = document.createElement('button');
   myBtn.innerText = theText;
-  return myBtn
+  console.warn(myBtn);
+  quizAnswers.appendChild(myBtn);
+  
 }
 
 
 function gameOver(){
-  console.log("Game over, man!");
+  // console.log("You are in gameOver()");
 }
 
 introPage()
