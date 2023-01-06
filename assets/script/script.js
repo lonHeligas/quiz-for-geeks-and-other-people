@@ -9,7 +9,7 @@ const startButton = document.querySelector("#start");
 let quizButton = document.createElement("button");
 
 let currentScore = 0;
-let totalTime = 5;
+let secondsLeft = 3;
 
 let currentQuestion = 0;
 
@@ -27,11 +27,12 @@ function introPage(){
   quizTitle.textContent = 'Geeks and Non-Geeks Quiz';
   // console.log("hello world");
   // console.log(quizTitle)
-  quizTimer.textContent = `Time: ${timer}`;
+  quizTimer.textContent = `Time: ${secondsLeft}`;
   quizInst.textContent = "Try to answer the following questions about geeky things within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds! Oh noes!"
   startButton.textContent = "Start!"    
   startButton.addEventListener("click", function(){
     startButton.remove();
+    
     startTimer();
   })
   
@@ -41,31 +42,35 @@ function introPage(){
 // things that are happening in the one question
 // 
 
-function startTimer(){    
-  // set the timer to 100 seconds
-  let timer = totalTime;
-  // what happens when it ticks     
-  setInterval(function(){
-    console.log(timer);
-    if (timer === 0){
+function startTimer(){ 
+  console.warn(secondsLeft);  // set the timer to 100 seconds
+  
+  // console.log(secondsLeft);
+  // quizTimer.innerHTML = `Time: ${secondsLeft+1}`;
+  // what happens when it ticks 
+
+  var countdown = setInterval(function(){
+    secondsLeft--;
+    console.log(secondsLeft);
+    quizTimer.innerHTML = `Time: ${secondsLeft}`;
+    if (secondsLeft === 0){
       console.log("time's up!");
       // go to the show your score and put your name in screen
-      clearInterval();
+      clearInterval(countdown);
       gameOver();
     } else {
       // keep going
     }
-    timer--;
-    // populates the timer on-screen. isn't that gweat?
-    quizTimer.textContent = `Time: ${timer}`;
+   
   }, 1000);
   quizRunner();
   
 }
 
 function quizRunner(){
+  console.log("You are in quizRunner");
   // clears out title and instructions
-  // blank out the prior text fields and start button
+  
   quizTitle.textContent = "";
   quizInst.textContent = "";  
   // populate the quiz question AND get the answers as buttons
@@ -95,7 +100,7 @@ function createButton(theText){
 
 
 function gameOver(){
-
+  console.log("Game over, man!");
 }
 
 introPage()
