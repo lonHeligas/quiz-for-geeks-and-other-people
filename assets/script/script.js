@@ -83,13 +83,13 @@ function quizRunner(){
   // console.log(quizQuestion)
   // displays the question answers from the array
   for (i=0; i<allQuestions[0].answer.length; i++){
-    createButton(allQuestions[0].answer[i]);
-    
+    createButton(allQuestions[0].answer[i]);    
     // console.log(allQuestions[0].answer.length);
     // quizButton.textContent = allQuestions[0].answer[i];
     // quizAnswers.appendChild(quizButton);    
     // // make a button
   }  
+  
   // check which button the user clicked and shock or praise them
 }
 
@@ -99,8 +99,7 @@ function createButton(theText){
   let myBtn = document.createElement('button');
   myBtn.innerText = theText;
   console.warn(myBtn);
-  quizAnswers.appendChild(myBtn);
-  
+  quizAnswers.appendChild(myBtn);  
 }
 
 
