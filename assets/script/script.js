@@ -10,13 +10,13 @@ const quizFeedback = document.querySelector("#feedback");
 
 let quizButton = document.createElement("button");
 let currentScore = 0;
-let secondsLeft = 3;
+let secondsLeft = 20;
 let currentQuestion = 0;
 
 var allQuestions = [
-  { questionNumber: "1", questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What1", "Where1", "Why1"],correctAnswer: 1},
-  { questionNumber: "2", questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What2", "Where2", "Why2"], correctAnswer: 2},
-  { questionNumber: "3", questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What3", "Where3", "Why3"], answer3: "Why3", correctAnswer: 0}
+  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What1", "Where1!!!", "Why1"],correctAnswer: 1},
+  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What2", "Where2", "Why2!!!"], correctAnswer: 2},
+  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What3!!!", "Where3", "Why3"], answer3: "Why3", correctAnswer: 0}
 ]
 
 
@@ -69,23 +69,30 @@ function startTimer(){
 }
 
 function quizRunner(){
-
   // console.log("You are in quizRunner");
-
   // clears out title and instructions  
+
   quizTitle.textContent = "";
   quizInst.textContent = "";  
+  quizAnswers.textContent = "";
 
   // populate the quiz question AND get the answers as buttons  
   allQuestions[currentQuestion]  
   questionNum.textContent = `Question: ${currentQuestion+1}`;  
-  quizQuestion.textContent = allQuestions[0].questionText;
+  quizQuestion.textContent = allQuestions[currentQuestion].questionText;
 
   // console.log(quizQuestion)
 
   // displays the question answers from the array
-  for (i=0; i<allQuestions[0].answer.length; i++){
-    createButton(allQuestions[0].answer[i]);  
+  for (i=0; i<allQuestions[currentQuestion].answer.length; i++){
+    let myBtn = document.createElement('button');
+    myBtn.innerText = allQuestions[currentQuestion].answer[i];
+    if(i === allQuestions[currentQuestion].correctAnswer){
+      myBtn.setAttribute("correct",true)
+    }
+    console.warn(myBtn);
+    myBtn.addEventListener("click", checkAnswers)
+    quizAnswers.appendChild(myBtn);  
     
     // console.log(allQuestions[0].answer.length);   <-- this made a button, but I moved it to a separate function called "createButton"
     // quizButton.textContent = allQuestions[0].answer[i];
@@ -93,24 +100,40 @@ function quizRunner(){
     
   }  
   console.log(window);
-  checkAnswers(); // <-- check which button the user clicked and deduct time or praise them
 }
 
-function checkAnswers(){ 
-  // This function will check the answer to see if it's correct or incorrect. Both of them go back to the quizRunner (somehow)
-     // check out lesson 19 for thet stuff to do this part
-}
+function checkAnswers(event){ 
+  event.preventDefault()
+  console.log(event.target)
+  console.log(event)
+  if(event.target.hasAttribute("correct")){
+    console.log("Great!")
+    currentScore++;
+    quizFeedback.textContent = "Correct!";
+    // update the score
+  } else{
+    console.log("WRONG")    
+    secondsLeft-=10;  
+    quizFeedback.textContent = "Nope!";
+
+    
+    //decraese the timer
+  } 
+  currentQuestion++;
+  quizRunner();
+
+//   //we need to make sure we have questions and time left
+//   if we do
+//   // currentQuestion ++
+//   quizRunner()
+//  else{
+//   endQuiz()
+//  }
+//   // This function will check the answer to see if it's correct or incorrect. Both of them go back to the quizRunner (somehow)
+  // check out lesson 19 for thet stuff to do this part
+  // when we're buliding the buttons, we need to ID the buttons when they're being built 
 
 
-function createButton(theText){
-
-  // console.warn("You are in createButton()");
-  // console.warn(theText);
-
-  let myBtn = document.createElement('button');
-  myBtn.innerText = theText;
-  console.warn(myBtn);
-  quizAnswers.appendChild(myBtn);  
 }
 
 
