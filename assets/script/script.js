@@ -7,11 +7,10 @@ const quizTimer = document.querySelector("#timer");
 const highScores = document.querySelector('highscores')
 const startButton = document.querySelector("#start");
 const quizFeedback = document.querySelector("#feedback");
-let quizButton = document.createElement("button");
 
+let quizButton = document.createElement("button");
 let currentScore = 0;
 let secondsLeft = 3;
-
 let currentQuestion = 0;
 
 var allQuestions = [
@@ -22,42 +21,43 @@ var allQuestions = [
 
 
 function introPage(){
+
   // console.log(allQuestions)  
   // console.warn("yo!");
+
   // primary intro page
   quizTitle.textContent = 'Geeks and Non-Geeks Quiz';
+
   // console.log("hello world");
   // console.log(quizTitle)
+
   quizTimer.textContent = `Time: ${secondsLeft}`;
   quizInst.textContent = "Try to answer the following questions about geeky things within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds! Oh noes!"
   startButton.textContent = "Start!"    
   startButton.addEventListener("click", function(){
-    startButton.remove();
-    
+    startButton.remove();    
     startTimer();
   })
   
 }
+
+// dev notes:
 // where am I in the quiz? pre/in/results
 // in the quiz, what's gong on? the timer and the score
 // things that are happening in the one question
-// 
+
 
 function startTimer(){ 
-  console.warn(secondsLeft);  // set the timer to 100 seconds
-  
-  // console.log(secondsLeft);
-  // quizTimer.innerHTML = `Time: ${secondsLeft+1}`;
-  // what happens when it ticks 
+  console.warn(secondsLeft);  
 
   var countdown = setInterval(function(){
     secondsLeft--;
     console.log(secondsLeft);
     quizTimer.innerHTML = `Time: ${secondsLeft}`;
     if (secondsLeft === 0){
-      // console.log("time's up!");
-      // go to the show your score and put your name in screen
+      console.log("time's up!");
       clearInterval(countdown);
+      // go to the show your score and put your name in screen
       gameOver();
     } else {
       // keep going
@@ -69,33 +69,44 @@ function startTimer(){
 }
 
 function quizRunner(){
+
   // console.log("You are in quizRunner");
-  // clears out title and instructions
-  
+
+  // clears out title and instructions  
   quizTitle.textContent = "";
   quizInst.textContent = "";  
-  // populate the quiz question AND get the answers as buttons
-  // allQuestions[2].answer1
 
+  // populate the quiz question AND get the answers as buttons  
   allQuestions[currentQuestion]  
   questionNum.textContent = `Question: ${currentQuestion+1}`;  
   quizQuestion.textContent = allQuestions[0].questionText;
+
   // console.log(quizQuestion)
+
   // displays the question answers from the array
   for (i=0; i<allQuestions[0].answer.length; i++){
-    createButton(allQuestions[0].answer[i]);    
-    // console.log(allQuestions[0].answer.length);
+    createButton(allQuestions[0].answer[i]);  
+    
+    // console.log(allQuestions[0].answer.length);   <-- this made a button, but I moved it to a separate function called "createButton"
     // quizButton.textContent = allQuestions[0].answer[i];
     // quizAnswers.appendChild(quizButton);    
-    // // make a button
+    
   }  
-  
-  // check which button the user clicked and shock or praise them
+  console.log(window);
+  checkAnswers(); // <-- check which button the user clicked and deduct time or praise them
 }
 
+function checkAnswers(){ 
+  // This function will check the answer to see if it's correct or incorrect. Both of them go back to the quizRunner (somehow)
+     // check out lesson 19 for thet stuff to do this part
+}
+
+
 function createButton(theText){
+
   // console.warn("You are in createButton()");
   // console.warn(theText);
+
   let myBtn = document.createElement('button');
   myBtn.innerText = theText;
   console.warn(myBtn);
@@ -104,7 +115,7 @@ function createButton(theText){
 
 
 function gameOver(){
-  // console.log("You are in gameOver()");
+  console.log("You are in gameOver()");
 }
 
 introPage()
