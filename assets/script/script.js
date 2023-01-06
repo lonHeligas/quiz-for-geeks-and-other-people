@@ -6,9 +6,11 @@ const quizAnswers = document.querySelector("#answers");
 const quizTimer = document.querySelector("#timer");
 const highScores = document.querySelector('highscores')
 const startButton = document.querySelector("#start");
+let quizButton = document.createElement("button");
 
 let currentScore = 0;
-var timer = 100;
+let totalTime = 5;
+
 let currentQuestion = 0;
 
 var allQuestions = [
@@ -19,10 +21,10 @@ var allQuestions = [
 
 
 function introPage(){
-  console.log(allQuestions)  
-  console.warn("yo!");
+  // console.log(allQuestions)  
+  // console.warn("yo!");
   // primary intro page
-  quizTitle.textContent = 'Coding Quiz Challenge';
+  quizTitle.textContent = 'Geeks and Non-Geeks Quiz';
   // console.log("hello world");
   // console.log(quizTitle)
   quizTimer.textContent = `Time: ${timer}`;
@@ -30,25 +32,26 @@ function introPage(){
   startButton.textContent = "Start!"    
   startButton.addEventListener("click", function(){
     startButton.remove();
-    quizRunner();
+    startTimer();
   })
-  // quizRunner ();
+  
 }
 // where am I in the quiz? pre/in/results
 // in the quiz, what's gong on? the timer and the score
 // things that are happening in the one question
 // 
 
-function quizRunner(){  
-  
+function startTimer(){    
   // set the timer to 100 seconds
-  // what happens when it ticks   
-  
+  let timer = totalTime;
+  // what happens when it ticks     
   setInterval(function(){
     console.log(timer);
     if (timer === 0){
+      console.log("time's up!");
       // go to the show your score and put your name in screen
-      
+      clearInterval();
+      gameOver();
     } else {
       // keep going
     }
@@ -56,47 +59,42 @@ function quizRunner(){
     // populates the timer on-screen. isn't that gweat?
     quizTimer.textContent = `Time: ${timer}`;
   }, 1000);
+  quizRunner();
   
+}
+
+function quizRunner(){
+  // clears out title and instructions
+  // blank out the prior text fields and start button
   quizTitle.textContent = "";
-  quizInst.textContent = "";
-  
+  quizInst.textContent = "";  
   // populate the quiz question AND get the answers as buttons
-  // check which button the user clicked and shock or praise them
   // allQuestions[2].answer1
-  allQuestions[currentQuestion]
 
-
-  
-  questionNum.textContent = `Question Numero ${currentQuestion+1}`;
-  
+  allQuestions[currentQuestion]  
+  questionNum.textContent = `Question Numero ${currentQuestion+1}`;  
   quizQuestion.textContent = allQuestions[0].questionText;
+  // console.log(quizQuestion)
   // displays the question answers from the array
   for (i=0; i<allQuestions[0].answer.length; i++){
-    var quizButton = document.createElement("button");
-    quizButton.textContent = allQuestions[0].answer[i];
-    quizAnswers.append(quizButton);    
-    // make a button
+    createButton(allQuestions[0].answer[i]);
+    
+    // console.log(allQuestions[0].answer.length);
+    // quizButton.textContent = allQuestions[0].answer[i];
+    // quizAnswers.appendChild(quizButton);    
+    // // make a button
+  }  
+  // check which button the user clicked and shock or praise them
+}
+
+function createButton(theText){
+  let myBtn = document.createElement('button');
+  myBtn.innerText = theText;
+  return myBtn
+}
 
 
-
-
-  }
-
-
-
-
-  // Node.operation.value
-  
-  
-  
-  
-  
-  
-  // blank out the prior text fields and start button
-  
-  
-  
-
+function gameOver(){
 
 }
 
