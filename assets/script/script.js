@@ -1,17 +1,27 @@
-const quizTitle = document.querySelector("#title");
-const quizInst = document.querySelector("#instructions");
-const quizQuestion = document.querySelector("#question");
-const questionNum = document.querySelector("#questionNum");
-const quizAnswers = document.querySelector("#answers");
-const quizTimer = document.querySelector("#timer");
+const introBoard = document.querySelector('#intro-board');
+const quizBoard = document.querySelector('#quiz-board');
+const highScoreBoard = document.querySelector('#high-score-board');
+const gotoHiScore = document.querySelecdtor('go-to-hiscore');
+const quizTitle = document.querySelector('#title');
+const quizInst = document.querySelector('#instructions');
+const quizQuestion = document.querySelector('#question');
+const questionNum = document.querySelector('#questionNum');
+const quizAnswers = document.querySelector('#answers');
+const quizTimer = document.querySelector('#timer');
 const highScores = document.querySelector('highscores')
-const startButton = document.querySelector("#start");
-const quizFeedback = document.querySelector("#feedback");
-const highScoreEntry = document.querySelector("#high-score-entry");
-const highScorePrompt = document.querySelector("#high-score-prompt");
-const highScoreField = document.querySelector("#entry-field");
-const submitButton = document.querySelector("#submit-button");
+const startButton = document.querySelector('#start');
+const quizFeedback = document.querySelector('#feedback');
+const highScoreEntry = document.querySelector('#high-score-entry');
+const highScorePrompt = document.querySelector('#high-score-prompt');
+const highScoreField = document.querySelector('#entry-field');
+const submitButton = document.querySelector('#submit-button');
 const highScoreLine = document.querySelector('#high-score-line');
+
+const retakeQuiz = documenty.querySelecdtor('#retakeQuiz');
+
+// when styling everything, put each screen in its own div. then you can just turn off the div itself and not all of the elements.
+
+
 
 
 let quizButton = document.createElement("button");
@@ -70,8 +80,7 @@ function introPage(){
 
 
 function startTimer(){ 
-  console.warn(secondsLeft);  
-  
+  console.warn(secondsLeft);    
   var countdown = setInterval(function(){
     secondsLeft--;
     console.log(secondsLeft);
@@ -80,7 +89,6 @@ function startTimer(){
       console.log("time's up!");
       quizTimer.textContent = `Time: 0`;
       clearInterval(countdown);
-
       // go to the show your score and put your name in screen
       gameOver();
     } else {

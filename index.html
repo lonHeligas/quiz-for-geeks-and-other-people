@@ -10,31 +10,40 @@
   </head>
 
   <body>
+
+
+  <section id="header">
+    <h3 id="timer"></h3>
+    <h3 id="go-to-hiscore"></h3>
+  </section>
+
+  <section id="intro-board">
+    <button id="start"></button>
     <h1 id="title"></h1>
-  <h2 id="splash"></h2>
-  <h3 id="instructions"></h3>
-  <button id="start"></button>
-    <section>
-      <h2 id="question"></h2>
-      <h3 id="questionNum"></h3>
-      <div id="answers">
-      </div>
-    </section>
-    <h2 id="finish"></h2>
-  <h3 id="timer"></h3>
-  <div id="high-score-entry">
+    <h2 id="splash"></h2>
+    <h3 id="instructions"></h3>
+  </section>
+
+  <section id="quiz-board">
+    <h2 id="question"></h2>
+    <h3 id="questionNum"></h3>
+    <div id="answers"></div> 
+  </section>
+
+  <section id="high-score-entry">
     <p id="high-score-prompt"></p>
     <input type="text" id="entry-field" class="hidden"></input>
     <button id="submit-button"></button>
-  </div>
-  <h4 id="timer"></h3> 
-    <div id="highscores">
-      <ol id="high-score-line"></ol>
-  </div>
-  
-  <div id="feedback"></div>
-  
+  </section>
 
-    <script src="assets/script/script.js"></script>
-  </body>
+  <section id="high-score-board">
+    <div id="highscores"></div>
+    <ol id="high-score-line"></ol>
+    <div id="retakequiz"></div>
+  </section>
+  
+  
+  <script src="assets/script/script.js"></script>
+</body>
 </html>
+
