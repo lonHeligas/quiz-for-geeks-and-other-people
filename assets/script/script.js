@@ -135,24 +135,14 @@ function checkAnswers(event){
     // console.log("WRONG")    
     secondsLeft-=10;  
     quizFeedback.textContent = "Nope!";
-    
-    
-    //decraese the timer
   } 
   currentQuestion++;
   quizRunner();
-  
-  //   // This function will check the answer to see if it's correct or incorrect. Both of them go back to the quizRunner (somehow)
-  // check out lesson 19 for thet stuff to do this part
-  // when we're buliding the buttons, we need to ID the buttons when they're being built 
-  
-  
 }
-
 
 function gameOver(){    
   clearPage()
-
+  // adds the submit button back onto the page
   submitButton.classList.remove('hidden');
   submitButton.enable;
   submitButton.textContent = "Submit";  
@@ -162,12 +152,14 @@ function gameOver(){
   quizInst.textContent = `Your final score is: ${currentScore}`; 
   highScorePrompt.textContent = "Enter your initials and click Submit";
   highScoreField.classList.remove('hidden'); 
+  // listens for the user to click the submit button to store in an object
   submitButton.addEventListener("click", function(event){    
     scoreAttempt = {
       playerInitials: highScoreField.value,
       playerScore: currentScore,
     }    
     event.preventDefault();
+    // adds object to the array to store locally
     hiScores.push(scoreAttempt);
     localStorage.setItem("playerScoreEntry" , JSON.stringify(hiScores));
     displayHighScores();  
@@ -175,7 +167,7 @@ function gameOver(){
 }
 
 function clearPage(){
-  console.log("CLEAR THE PAAAGGEEEE");  
+  // console.log("CLEAR THE PAAAGGEEEE");  
   quizInst.textContent = ``;
   quizQuestion.textContent = ``;
   quizAnswers.textContent = ``;
@@ -184,9 +176,9 @@ function clearPage(){
 }
 
 function displayHighScores(){
+  // displays the high score list
   clearPage();
-
-
+  // runs through the high scores stored in local memory and displays them
   for (i=0; i<hiScores.length; i++){  
     let myHiScore = document.createElement('li');
     myHiScore.textContent = ` ${hiScores[i].playerInitials} ${hiScores[i].playerScore}`;
