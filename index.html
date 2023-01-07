@@ -19,27 +19,30 @@
 
   <section id="intro-board">
     <button id="start"></button>
-    <h1 id="title"></h1>
-    <h2 id="splash"></h2>
+    <h1 id="title"></h1>    
     <h3 id="instructions"></h3>
   </section>
 
-  <section id="quiz-board">
-    <h2 id="question"></h2>
+  <section id="quiz-board" class="hidden">
     <h3 id="questionNum"></h3>
+    <h2 id="question"></h2>
     <div id="answers"></div> 
+    <div id="feedback"></div>
   </section>
 
-  <section id="high-score-entry">
+  <section id="high-score-entry" class="hidden">    
     <p id="high-score-prompt"></p>
-    <input type="text" id="entry-field" class="hidden"></input>
-    <button id="submit-button"></button>
+    <p id="quiz-is-over"></p>
+    <p id="final-score"></p>
+    <input type="text" id="entry-field"></input>
+    <button id="submit-button">Submit</button>
   </section>
 
-  <section id="high-score-board">
+  <section id="high-score-board" class="hidden">
+    
     <div id="highscores"></div>
     <ol id="high-score-line"></ol>
-    <div id="retakequiz"></div>
+    <button id="retakequiz">Retake Quiz</button>
   </section>
   
   
