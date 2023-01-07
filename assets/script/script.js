@@ -1,7 +1,7 @@
 const introBoard = document.querySelector('#intro-board');
 const quizBoard = document.querySelector('#quiz-board');
 const highScoreBoard = document.querySelector('#high-score-board');
-const gotoHiScore = document.querySelector('go-to-hiscore');
+const goToHiScore = document.querySelector('go-to-hiscore');
 const quizTitle = document.querySelector('#title');
 const quizInst = document.querySelector('#instructions');
 const quizQuestion = document.querySelector('#question');
@@ -16,15 +16,14 @@ const highScorePrompt = document.querySelector('#high-score-prompt');
 const highScoreField = document.querySelector('#entry-field');
 const submitButton = document.querySelector('#submit-button');
 const highScoreLine = document.querySelector('#high-score-line');
-const retakeQuiz = document.querySelector('#retakeQuiz');
-
+const retakeQuiz = document.querySelector('#retake-quiz');
 
 // idea: when styling everything, put each screen in its own div. then you can just turn off the div itself and not all of the elements. (this borked everything lol)
 
 let quizButton = document.createElement("button");
 let currentScore = 0;
 let currentQuestion = 0;
-let secondsLeft = 10;
+let secondsLeft = 1000;
 
 var allQuestions = [
   {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["One", "3", "Two"],correctAnswer: 1},
@@ -49,21 +48,23 @@ console.log(hiScores);
 
 
 
+
 function introPage(){   
   // primary intro page
   quizTitle.textContent = 'Geeks and Non-Geeks Quiz';
+  goToHiScore.textContent = 'Geeks and Non-Geeks Quiz';
   // submitButton.classList.add('hidden');
 
     // console.log(quizTitle)
-  
   quizTimer.textContent = `Time: ${secondsLeft}`;
   quizInst.textContent = "Try to answer the following questions about geeky things within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!"
   startButton.textContent = "Start!"    
-  startButton.addEventListener("click", function(){
-    startButton.remove();    
-    startTimer();
-  })
+  startButton.addEventListener("click", handleStartButtonClick);
   
+}
+function handleStartButtonClick(){
+  startButton.remove();    
+  startTimer();
 }
 
 // dev notes:
@@ -94,12 +95,14 @@ function startTimer(){
 }
 
 function quizRunner(){
+  quizFeedback.classList.add('hidden');
   quizBoard.classList.remove('hidden');
   introBoard.classList.add('hidden');
   
+  
   // console.log("You are in quizRunner");
   
-
+  
   
   // populate the quiz question AND get the answers as buttons  
   allQuestions[currentQuestion]  
@@ -123,6 +126,8 @@ function quizRunner(){
   // console.log(window);
 }
 
+
+
 function checkAnswers(event){ 
   // checks the answer to see if it's right or wrong and adjusts score or time accodingly
   event.preventDefault()
@@ -133,10 +138,12 @@ function checkAnswers(event){
     // console.log("Great!")
     // updates the score
     currentScore++;
+    quizFeedback.classList.remove('hidden');    
     quizFeedback.textContent = "Correct!";
   } else{
     // console.log("WRONG")    
     secondsLeft-=10;  
+    quizFeedback.classList.remove('hidden');    
     quizFeedback.textContent = "Nope!";
   } 
   currentQuestion++;
@@ -160,18 +167,22 @@ function gameOver(){
   finalScoreIs.textContent = `Your final score is: ${currentScore}`; 
   highScorePrompt.textContent = "Enter your initials and click Submit";
   highScoreField.classList.remove('hidden'); 
+  highScoreField.value = '';
   // listens for the user to click the submit button to store in an object
-  submitButton.addEventListener("click", function(event){    
-    scoreAttempt = {
-      playerInitials: highScoreField.value,
-      playerScore: currentScore,
-    }    
-    event.preventDefault();
-    // adds object to the array to store locally
-    hiScores.push(scoreAttempt);
-    localStorage.setItem("playerScoreEntry" , JSON.stringify(hiScores));
-    displayHighScores();  
-  })    
+  submitButton.removeEventListener("click", handleSubmitButtonClick);
+  submitButton.addEventListener("click", handleSubmitButtonClick);
+}
+
+function handleSubmitButtonClick(event){
+  scoreAttempt = {
+    playerInitials: highScoreField.value,
+    playerScore: currentScore,
+  }    
+  event.preventDefault();
+  // adds object to the array to store locally
+  hiScores.push(scoreAttempt);
+  localStorage.setItem("playerScoreEntry" , JSON.stringify(hiScores));
+  displayHighScores();  
 }
 
 // function clearPage(){
@@ -195,15 +206,36 @@ function gameOver(){
     console.log("you are in display high scores");
     highScoreEntry.classList.add('hidden');
     highScoreBoard.classList.remove('hidden');
-    
+    highScoreLine.textContent = ``;
     // displays the high score list
-  
-  // runs through the high scores stored in local memory and displays them
-  for (i=0; i<hiScores.length; i++){  
-    let myHiScore = document.createElement('li');
-    myHiScore.textContent = ` ${hiScores[i].playerInitials} ${hiScores[i].playerScore}`;
-    highScoreLine.appendChild(myHiScore);    
+    
+    // runs through the high scores stored in local memory and displays them
+    for (i=0; i<hiScores.length; i++){  
+      let myHiScore = document.createElement('li');
+      myHiScore.textContent = ` ${hiScores[i].playerInitials} ${hiScores[i].playerScore}`;
+      highScoreLine.appendChild(myHiScore);    
     }  
+    // adds the event listener to trigger handleRetakeQuizClick
+    retakeQuiz.addEventListener('click', handleRetakeQuizClick);
+  };
+  
+
+  function handleRetakeQuizClick(){
+    secondsLeft = 10;
+    quizTimer.textContent = `Time: ${secondsLeft}`;
+    restartQuiz();    
+  }
+  
+  
+  function restartQuiz (){
+  retakeQuiz.removeEventListener('click', handleRetakeQuizClick);
+  highScoreBoard.classList.add('hidden');
+  // document.location.reload();
+  currentQuestion = 0;
+  currentScore = 0;
+  secondsLeft = 10;
+  startTimer(); 
+    
 }
 
 introPage();
