@@ -138,18 +138,18 @@ function checkAnswers(event){
   // checks the answer to see if it's right or wrong and adjusts score or time accodingly
   event.preventDefault()
   console.warn(quizFeedback);
+  quizFeedback.classList.remove('hidden');    
   // console.log(event.target)
   // console.log(event)
   if(event.target.hasAttribute("correct")){
     // console.log("Great!")
     // updates the score
     currentScore++;
-    quizFeedback.classList.remove('hidden');    
     quizFeedback.textContent = "Correct!";
   } else{
     // console.log("WRONG")    
     secondsLeft-=10;  
-    quizFeedback.classList.remove('hidden');    
+    
     quizFeedback.textContent = "Nope!";
   } 
   currentQuestion++;
@@ -191,23 +191,6 @@ function handleSubmitButtonClick(event){
   displayHighScores();  
 }
 
-// function clearPage(){
-  
-  
-  
-  //   // console.log("CLEAR THE PAAAGGEEEE");  
-  //   // introBoard.textContent = ``;
-  //   // quizBoard.textContent = ``;
-  //   // highScoreBoard.textContent = ``;
-  
-  
-  //   // quizInst.textContent = ``;
-  //   // quizQuestion.textContent = ``;
-  //   // quizAnswers.textContent = ``;
-  //   // questionNum.textcontent = ``;
-  //   // quizFeedback.textContent = ``;  
-  // }
-  
   function displayHighScores(){
     console.log("you are in display high scores");
     highScoreEntry.classList.add('hidden');
@@ -222,10 +205,16 @@ function handleSubmitButtonClick(event){
       myHiScore.textContent = ` ${hiScores[i].playerInitials} ${hiScores[i].playerScore}`;
       highScoreLine.appendChild(myHiScore);    
     }  
+
     clearHiScores.addEventListener('click', function() {
-        localStorage.clear();
-        
-    })
+      localStorage.clear();
+      // for (i=0; i<hiScores.length; i++){  
+      //   let myHiScore = document.createElement('li');
+      //   myHiScore.textContent = ``;
+      //   highScoreLine.appendChild(myHiScore);    
+      //   displayHighScores()
+      // }  
+      });
 
     
 
