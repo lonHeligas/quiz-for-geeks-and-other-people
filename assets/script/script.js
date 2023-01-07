@@ -7,6 +7,12 @@ const quizTimer = document.querySelector("#timer");
 const highScores = document.querySelector('highscores')
 const startButton = document.querySelector("#start");
 const quizFeedback = document.querySelector("#feedback");
+const highScoreEntry = document.querySelector("#high-score-entry")
+const highScorePrompt = document.querySelector("#high-score-prompt")
+const highScoreField = document.querySelector("#entry-field");
+const submitButton = document.querySelector("#submit-button");
+
+
 
 let quizButton = document.createElement("button");
 let currentScore = 0;
@@ -16,7 +22,10 @@ let currentQuestion = 0;
 var allQuestions = [
   {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What1", "Where1!!!", "Why1"],correctAnswer: 1},
   {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What2", "Where2", "Why2!!!"], correctAnswer: 2},
-  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What3!!!", "Where3", "Why3"], answer3: "Why3", correctAnswer: 0}
+  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What3!!!", "Where3", "Why3"], answer3: "Why3", correctAnswer: 0},
+  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What4!!!", "Where4", "Why4"], answer3: "Why3", correctAnswer: 0},
+  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What5!!!", "Where5", "Why5"], answer3: "Why3", correctAnswer: 0},
+  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What6!!!", "Where6", "Why6"], answer3: "Why3", correctAnswer: 0}
 ]
 
 
@@ -27,7 +36,7 @@ function introPage(){
 
   // primary intro page
   quizTitle.textContent = 'Geeks and Non-Geeks Quiz';
-
+  submitButton.remove();
   // console.log("hello world");
   // console.log(quizTitle)
 
@@ -54,9 +63,11 @@ function startTimer(){
     secondsLeft--;
     console.log(secondsLeft);
     quizTimer.innerHTML = `Time: ${secondsLeft}`;
-    if (secondsLeft === 0){
+    if (secondsLeft <= 0){
       console.log("time's up!");
+      quizTimer.textContent = `Time: 0`;
       clearInterval(countdown);
+
       // go to the show your score and put your name in screen
       gameOver();
     } else {
@@ -90,7 +101,7 @@ function quizRunner(){
     if(i === allQuestions[currentQuestion].correctAnswer){
       myBtn.setAttribute("correct",true)
     }
-    console.warn(myBtn);
+    // console.warn(myBtn);
     myBtn.addEventListener("click", checkAnswers)
     quizAnswers.appendChild(myBtn);  
     
@@ -138,7 +149,16 @@ function checkAnswers(event){
 
 
 function gameOver(){
+  quizQuestion.textContent = "";
+  quizAnswers.textContent = "";
+  questionNum.textcontent = "";
+  quizFeedback.textContent = "";
+  submitButton.enable;
+  console.log(submitButton);
+  submitButton.textContent = "Submit";
   console.log("You are in gameOver()");
+  quizTitle.textContent = "The Quiz is over!";
+  quizInst.textContent = `Your final score is: ${currentScore}`;
 }
 
 introPage()
