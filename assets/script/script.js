@@ -1,7 +1,7 @@
 const introBoard = document.querySelector('#intro-board');
 const quizBoard = document.querySelector('#quiz-board');
 const highScoreBoard = document.querySelector('#high-score-board');
-const goToHiScore = document.querySelector('go-to-hiscore');
+const goToHiScore = document.querySelector('#go-to-hiscore');
 const quizTitle = document.querySelector('#title');
 const quizInst = document.querySelector('#instructions');
 const quizQuestion = document.querySelector('#question');
@@ -17,13 +17,15 @@ const highScoreField = document.querySelector('#entry-field');
 const submitButton = document.querySelector('#submit-button');
 const highScoreLine = document.querySelector('#high-score-line');
 const retakeQuiz = document.querySelector('#retake-quiz');
+const clearHiScores = document.querySelector('#clear-hiscores');
+
 
 // idea: when styling everything, put each screen in its own div. then you can just turn off the div itself and not all of the elements. (this borked everything lol)
 
 let quizButton = document.createElement("button");
 let currentScore = 0;
 let currentQuestion = 0;
-let secondsLeft = 1000;
+let secondsLeft = 10;
 
 var allQuestions = [
   {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["One", "3", "Two"],correctAnswer: 1},
@@ -45,6 +47,11 @@ if (hiScores == null) {
 console.log(hiScores);  
 // console.warn(hiScores);
 
+goToHiScore.textContent = 'View Highscores';
+// goToHiScore.addEventListener('click', function(){
+//   displayHighScores()
+// }
+// );
 
 
 
@@ -52,7 +59,6 @@ console.log(hiScores);
 function introPage(){   
   // primary intro page
   quizTitle.textContent = 'Geeks and Non-Geeks Quiz';
-  goToHiScore.textContent = 'Geeks and Non-Geeks Quiz';
   // submitButton.classList.add('hidden');
 
     // console.log(quizTitle)
@@ -207,6 +213,7 @@ function handleSubmitButtonClick(event){
     highScoreEntry.classList.add('hidden');
     highScoreBoard.classList.remove('hidden');
     highScoreLine.textContent = ``;
+
     // displays the high score list
     
     // runs through the high scores stored in local memory and displays them
@@ -215,8 +222,16 @@ function handleSubmitButtonClick(event){
       myHiScore.textContent = ` ${hiScores[i].playerInitials} ${hiScores[i].playerScore}`;
       highScoreLine.appendChild(myHiScore);    
     }  
+    clearHiScores.addEventListener('click', function() {
+        localStorage.clear();
+        
+    })
+
+    
+
     // adds the event listener to trigger handleRetakeQuizClick
     retakeQuiz.addEventListener('click', handleRetakeQuizClick);
+
   };
   
 
@@ -225,6 +240,8 @@ function handleSubmitButtonClick(event){
     quizTimer.textContent = `Time: ${secondsLeft}`;
     restartQuiz();    
   }
+
+  
   
   
   function restartQuiz (){
