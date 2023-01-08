@@ -19,19 +19,18 @@ const highScoreLine = document.querySelector('#high-score-line');
 const retakeQuiz = document.querySelector('#retake-quiz');
 const clearHiScores = document.querySelector('#clear-hiscores');
 
-
 // idea: when styling everything, put each screen in its own div. then you can just turn off the div itself and not all of the elements. (this borked everything lol)
 
 let quizButton = document.createElement("button");
 let currentScore = 0;
 let currentQuestion = 0;
-let secondsLeft = 1000;
+let secondsLeft = 100;
 
 var allQuestions = [
   {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["One", "Three", "Two"],correctAnswer: 1},
   {questionText: "Babylon 5 aired on what network originally?", answer:["The History Channel", "The WB", "PTEN"], correctAnswer: 2},
-  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What3!!!", "Where3", "Why3"], correctAnswer: 0},
-  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What4!!!", "Where4", "Why4"], correctAnswer: 0},
+  {questionText: "In Star Trek IV: The Voyage Home, how did Spock feel?", answer:["Fine", "A little mad", "Total zen"], correctAnswer: 0},
+  {questionText: "What class of ship was the Serenity?", answer:["Big Ship", "Broadsword", "Hauler", "Firefly"], correctAnswer: 3},
   {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What5!!!", "Where5", "Why5"], correctAnswer: 0},
   {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What6!!!", "Where6", "Why6"], correctAnswer: 0}
 ]
@@ -47,14 +46,11 @@ if (hiScores == null) {
 console.log(hiScores);  
 // console.warn(hiScores);
 
-goToHiScore.textContent = 'View Highscores';
+goToHiScore.textContent = 'View Highscores (non-functional atm)';
 // goToHiScore.addEventListener('click', function(){
-//   displayHighScores()
-// }
-// );
-
-
-
+//   introBoard.classList.add('hidden');
+//   displayHighScores();
+// })
 
 function introPage(){   
   // primary intro page
@@ -100,15 +96,15 @@ function startTimer(){
   // also put in if you're out of questions in line 79
 }
 
-function quizRunner(){
-  quizFeedback.classList.add('hidden');
+function quizRunner(){  
   quizBoard.classList.remove('hidden');
   introBoard.classList.add('hidden');
   
-  
   // console.log("You are in quizRunner");
-  
-  
+  if (allQuestions[currentQuestion] == allQuestions.length){
+    console.log("it's over!");
+    gameOver();
+  };  
   
   // populate the quiz question AND get the answers as buttons  
   allQuestions[currentQuestion]  

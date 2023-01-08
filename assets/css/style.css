@@ -3,6 +3,7 @@
 }
 
 body {
+  color: white;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background: #7191f3;
   height: 100vh;
@@ -17,7 +18,7 @@ body {
   height: 30px;
 }
 #timer {
-  color: rgb(255, 255, 255);
+  
   background-color: rgb(17, 0, 128);
   padding-top: 5px;
   padding-bottom: 5px;
@@ -31,7 +32,7 @@ body {
 
 #go-to-hiscore {
   user-select: none;
-  color: rgb(255, 255, 255);
+  
   background-color: rgb(17, 0, 128);
   padding-top: 5px;
   padding-bottom: 5px;
@@ -115,7 +116,6 @@ h1, h2, h3, h4, h5, h6, p {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-    
 }
 
 #answers button {
@@ -130,6 +130,19 @@ h1, h2, h3, h4, h5, h6, p {
   margin-left: 0px;  
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
+#feeedback {
+  margin-top: 20px;
+  opacity: 0;
+  /* animation: fadeOut 1s forwards; */
+  
+}
+
+/* @keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+} */
+
+/* adds a hover effect to the buttons. want to make this global but some buttons are generated in the code file */
 
 #answers button:hover {
   background-color:rgb(255, 156, 156);
