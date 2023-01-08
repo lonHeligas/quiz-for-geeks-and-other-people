@@ -85,6 +85,7 @@ h1, h2, h3, h4, h5, h6, p {
   background-color:red;
   transition-duration: 0.4s;
   width: 125px;
+  
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
 }
@@ -94,6 +95,15 @@ h1, h2, h3, h4, h5, h6, p {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.5);
   
 }
+
+#answers {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+
 
 #submit-button {
   text-shadow: 1px 1px 2px black;  
@@ -141,13 +151,20 @@ h1, h2, h3, h4, h5, h6, p {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
+#high-score-entry{
+  color: white;
+  text-shadow: 1px 1px 2px black;  
+  font-size: 30px;
+  margin-left: 180px;
 
+}
 
 #high-score-board {  
   color: white;
   text-shadow: 1px 1px 2px black;  
   font-size: 30px;
   margin-left: 180px;
+
 }
 
 #high-score-line {
