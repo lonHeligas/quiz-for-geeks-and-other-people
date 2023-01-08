@@ -45,9 +45,8 @@ body {
 #go-to-hiscore:hover {
   transition-duration: 0.4s;
   background-color:rgb(193, 14, 14);
-  
-  
 }
+
 
 h1, h2, h3, h4, h5, h6, p {
   color: white;
@@ -62,14 +61,15 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 #intro-board h1 {
-  font-size: 25px;
+  font-size: 30px;
   text-shadow: 1px 1px 2px black;  
   padding-top: 50px;
   padding-bottom: 20px;
+  margin-left: 200px;
 }
 
 #intro-board h3 {
-  font-size: 20px;
+  font-size: 17px;
   text-shadow: 1px 1px 2px black;    
   padding-bottom: 20px;
   padding-right: 150px;
@@ -85,6 +85,7 @@ h1, h2, h3, h4, h5, h6, p {
   background-color:red;
   transition-duration: 0.4s;
   width: 125px;
+  margin-left: 200px;
   
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
@@ -122,6 +123,18 @@ h1, h2, h3, h4, h5, h6, p {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.5);
 }
 
+#high-score-line li {
+  /* color: green; */
+  width: 40%;
+  background: rgb(0,35,138, 5);
+  background: linear-gradient(90deg, rgba(0,35,138,.5) 39%, rgba(113,145,243,0) 100%);
+
+
+  margin: 4px;
+  padding: 4px;
+
+}
+
 #retake-quiz {
   text-shadow: 1px 1px 2px black;  
   color: white;
@@ -136,9 +149,9 @@ h1, h2, h3, h4, h5, h6, p {
 
 #retake-quiz button:hover {
   background-color:rgb(255, 156, 156);
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.5);
-  
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.5);  
 }
+
 #clear-hiscores {
   text-shadow: 1px 1px 2px black;  
   color: white;
@@ -163,8 +176,7 @@ h1, h2, h3, h4, h5, h6, p {
   color: white;
   text-shadow: 1px 1px 2px black;  
   font-size: 30px;
-  margin-left: 180px;
-
+  margin-left: 260px;
 }
 
 #high-score-line {
