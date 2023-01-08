@@ -1,5 +1,5 @@
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 body {
@@ -97,7 +97,8 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 #quiz-board {
-  margin-left: 170px;   
+  margin-left: 170px;  
+  margin-top: 15px; 
   font-size: 30px; 
 }
 
@@ -219,6 +220,7 @@ h1, h2, h3, h4, h5, h6, p {
   color: white;
   font-size: 30px;
   margin-left: 180px;
+  margin-top: 15px; 
 
 }
 
@@ -226,6 +228,7 @@ h1, h2, h3, h4, h5, h6, p {
   color: white;
   font-size: 30px;
   margin-left: 260px;
+  margin-top: 15px; 
 }
 
 #high-score-line {

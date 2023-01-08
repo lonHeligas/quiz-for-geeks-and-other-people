@@ -24,13 +24,13 @@ const clearHiScores = document.querySelector('#clear-hiscores');
 let quizButton = document.createElement("button");
 let currentScore = 0;
 let currentQuestion = 0;
-let secondsLeft = 100;
+let secondsLeft = 10;
 
 var allQuestions = [
-  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["One", "Three", "Two"],correctAnswer: 1},
-  {questionText: "Babylon 5 aired on what network originally?", answer:["The History Channel", "The WB", "PTEN"], correctAnswer: 2},
-  {questionText: "In Star Trek IV: The Voyage Home, how did Spock feel?", answer:["Fine", "A little mad", "Total zen"], correctAnswer: 0},
-  {questionText: "What class of ship was the Serenity?", answer:["Big Ship", "Broadsword", "Hauler", "Firefly"], correctAnswer: 3},
+  // {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["One", "Three", "Two"],correctAnswer: 1},
+  // {questionText: "Babylon 5 aired on what network originally?", answer:["The History Channel", "The WB", "PTEN"], correctAnswer: 2},
+  // {questionText: "In Star Trek IV: The Voyage Home, how did Spock feel?", answer:["Fine", "A little mad", "Total zen"], correctAnswer: 0},
+  // {questionText: "What class of ship was the Serenity?", answer:["Big Ship", "Broadsword", "Hauler", "Firefly"], correctAnswer: 3},
   {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What5!!!", "Where5", "Why5"], correctAnswer: 0},
   {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What6!!!", "Where6", "Why6"], correctAnswer: 0}
 ]
@@ -46,11 +46,13 @@ if (hiScores == null) {
 console.log(hiScores);  
 // console.warn(hiScores);
 
-goToHiScore.textContent = 'View Highscores (non-functional atm)';
-// goToHiScore.addEventListener('click', function(){
-//   introBoard.classList.add('hidden');
-//   displayHighScores();
-// })
+goToHiScore.textContent = 'View Highscores';
+goToHiScore.addEventListener('click', function(){
+  introBoard.classList.add('hidden');
+  
+  displayHighScores();
+
+})
 
 function introPage(){   
   // primary intro page
@@ -76,13 +78,13 @@ function handleStartButtonClick(){
 
 
 function startTimer(){ 
-  console.warn(secondsLeft);    
+  // console.warn(secondsLeft);    
   var countdown = setInterval(function(){
     secondsLeft--;
-    console.log(secondsLeft);
+    // console.log(secondsLeft);
     quizTimer.innerHTML = `Time: ${secondsLeft}`;
     if (secondsLeft <= 0){
-      console.log("time's up!");
+      // console.log("time's up!");
       quizTimer.textContent = `Time: 0`;
       clearInterval(countdown);
       // go to the show your score and put your name in screen
@@ -99,13 +101,16 @@ function startTimer(){
 function quizRunner(){  
   quizBoard.classList.remove('hidden');
   introBoard.classList.add('hidden');
-  
-  // console.log("You are in quizRunner");
-  if (allQuestions[currentQuestion] == allQuestions.length){
+
+  // trying to get the quiz to end after you run out of questions
+  console.warn(allQuestions.length);
+  console.warn(allQuestions[currentQuestion], currentQuestion);
+  if (allQuestions[currentQuestion] == allQuestions.length-1){
     console.log("it's over!");
     gameOver();
   };  
   
+  // console.log("You are in quizRunner");
   // populate the quiz question AND get the answers as buttons  
   allQuestions[currentQuestion]  
   questionNum.textContent = `Question: ${currentQuestion+1}`;  
@@ -153,6 +158,7 @@ function checkAnswers(event){
     
     quizFeedback.textContent = "Nope!";
   } 
+
   currentQuestion++;
   quizRunner();
 }
@@ -164,12 +170,15 @@ function gameOver(){
   console.log("You are in gameOver()");
   quizBoard.classList.add('hidden');
   highScoreEntry.classList.remove('hidden');
-  // clearPage()
+  
+
   // adds the submit button back onto the page
   submitButton.classList.remove('hidden');
   submitButton.enable;
-  // submitButton.textContent = "Submit";  
-  console.log(submitButton);
+  
+
+  // console.log(submitButton);
+
   quizIsOver.textContent = "The Quiz is over!";
   finalScoreIs.textContent = `Your final score is: ${currentScore}`; 
   highScorePrompt.textContent = "Enter your initials and click Submit";
@@ -192,49 +201,49 @@ function handleSubmitButtonClick(event){
   displayHighScores();  
 }
 
-  function displayHighScores(){
-    console.log("you are in display high scores");
-    highScoreEntry.classList.add('hidden');
-    highScoreBoard.classList.remove('hidden');
-    highScoreLine.textContent = ``;
+function displayHighScores(){
+  console.log("you are in display high scores");
+  highScoreEntry.classList.add('hidden');
+  highScoreBoard.classList.remove('hidden');
+  highScoreLine.textContent = ``;
 
-    // displays the high score list
-    
-    // runs through the high scores stored in local memory and displays them
-    for (i=0; i<hiScores.length; i++){  
-      let myHiScore = document.createElement('li');
-      myHiScore.textContent = `Score: ${hiScores[i].playerScore} -  ${hiScores[i].playerInitials}`;
-      highScoreLine.appendChild(myHiScore);    
-    }  
+  // displays the high score list
+  
+  // runs through the high scores stored in local memory and displays them
+  for (i=0; i<hiScores.length; i++){  
+    let myHiScore = document.createElement('li');
+    myHiScore.textContent = `Score: ${hiScores[i].playerScore} -  ${hiScores[i].playerInitials}`;
+    highScoreLine.appendChild(myHiScore);    
+  }  
 
-    clearHiScores.addEventListener('click', function() {
-      localStorage.clear();
-      // for (i=0; i<hiScores.length; i++){  
-      //   let myHiScore = document.createElement('li');
-      //   myHiScore.textContent = ``;
-      //   highScoreLine.appendChild(myHiScore);    
-      //   displayHighScores()
-      // }  
-      });
+  clearHiScores.addEventListener('click', function() {
+    localStorage.clear();
+    // for (i=0; i<hiScores.length; i++){  
+    //   let myHiScore = document.createElement('li');
+    //   myHiScore.textContent = ``;
+    //   highScoreLine.appendChild(myHiScore);    
+    //   displayHighScores()
+    // }  
+  });
 
-    
-
-    // adds the event listener to trigger handleRetakeQuizClick
-    retakeQuiz.addEventListener('click', handleRetakeQuizClick);
-
-  };
   
 
-  function handleRetakeQuizClick(){
-    secondsLeft = 10;
-    quizTimer.textContent = `Time: ${secondsLeft}`;
-    restartQuiz();    
-  }
+  // adds the event listener to trigger handleRetakeQuizClick
+  retakeQuiz.addEventListener('click', handleRetakeQuizClick);
+
+};
+  
+
+function handleRetakeQuizClick(){
+  secondsLeft = 10;
+  quizTimer.textContent = `Time: ${secondsLeft}`;
+  restartQuiz();    
+}
 
   
   
   
-  function restartQuiz (){
+function restartQuiz (){
   retakeQuiz.removeEventListener('click', handleRetakeQuizClick);
   highScoreBoard.classList.add('hidden');
   // document.location.reload();
@@ -242,7 +251,7 @@ function handleSubmitButtonClick(event){
   currentScore = 0;
   secondsLeft = 10;
   startTimer(); 
-    
+  
 }
 
 introPage();
