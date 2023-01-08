@@ -28,8 +28,8 @@ let currentQuestion = 0;
 let secondsLeft = 1000;
 
 var allQuestions = [
-  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["One", "3", "Two"],correctAnswer: 1},
-  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What2", "Where2", "Why2!!!"], correctAnswer: 2},
+  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["One", "Three", "Two"],correctAnswer: 1},
+  {questionText: "Babylon 5 aired on what network originally?", answer:["The History Channel", "The WB", "PTEN"], correctAnswer: 2},
   {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What3!!!", "Where3", "Why3"], correctAnswer: 0},
   {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What4!!!", "Where4", "Why4"], correctAnswer: 0},
   {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What5!!!", "Where5", "Why5"], correctAnswer: 0},
@@ -122,7 +122,7 @@ function quizRunner(){
   for (i=0; i<allQuestions[currentQuestion].answer.length; i++){
     let myBtn = document.createElement('button');
     myBtn.innerText = allQuestions[currentQuestion].answer[i];
-    myBtn.setAttribute("style", "color:white; font-size: 25px; background-color: red; border-radius: 5px; border-color: pink; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)" );
+    
     if(i === allQuestions[currentQuestion].correctAnswer){
       myBtn.setAttribute("correct",true)
       
