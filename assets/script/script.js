@@ -25,7 +25,7 @@ const clearHiScores = document.querySelector('#clear-hiscores');
 let quizButton = document.createElement("button");
 let currentScore = 0;
 let currentQuestion = 0;
-let secondsLeft = 10;
+let secondsLeft = 1000;
 
 var allQuestions = [
   {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["One", "3", "Two"],correctAnswer: 1},
