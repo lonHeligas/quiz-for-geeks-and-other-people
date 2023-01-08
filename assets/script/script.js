@@ -24,7 +24,7 @@ const clearHiScores = document.querySelector('#clear-hiscores');
 let quizButton = document.createElement("button");
 let currentScore = 0;
 let currentQuestion = 0;
-let secondsLeft = 10;
+let secondsLeft = 100;
 
 var allQuestions = [
   // {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["One", "Three", "Two"],correctAnswer: 1},
@@ -49,13 +49,15 @@ console.log(hiScores);
 goToHiScore.textContent = 'View Highscores';
 goToHiScore.addEventListener('click', function(){
   introBoard.classList.add('hidden');
-  
+
   displayHighScores();
 
 })
 
 function introPage(){   
   // primary intro page
+  
+  introBoard.classList.remove('hidden');
   quizTitle.textContent = 'Geeks and Non-Geeks Quiz';
   // submitButton.classList.add('hidden');
 
@@ -67,7 +69,7 @@ function introPage(){
   
 }
 function handleStartButtonClick(){
-  startButton.remove();    
+  startButton.classList.add('hidden');    
   startTimer();
 }
 
@@ -206,7 +208,7 @@ function displayHighScores(){
   highScoreEntry.classList.add('hidden');
   highScoreBoard.classList.remove('hidden');
   highScoreLine.textContent = ``;
-
+  
   // displays the high score list
   
   // runs through the high scores stored in local memory and displays them
@@ -215,27 +217,31 @@ function displayHighScores(){
     myHiScore.textContent = `Score: ${hiScores[i].playerScore} -  ${hiScores[i].playerInitials}`;
     highScoreLine.appendChild(myHiScore);    
   }  
-
+  
   clearHiScores.addEventListener('click', function() {
     localStorage.clear();
+    secondsLeft = 100; 
+    highScoreBoard.classList.add('hidden'); 
+    startButton.classList.remove('hidden');
+    introPage();
     // for (i=0; i<hiScores.length; i++){  
-    //   let myHiScore = document.createElement('li');
-    //   myHiScore.textContent = ``;
-    //   highScoreLine.appendChild(myHiScore);    
-    //   displayHighScores()
+      //   let myHiScore = document.createElement('li');
+      //   myHiScore.textContent = ``;
+      //   highScoreLine.appendChild(myHiScore);    
+      //   displayHighScores()
     // }  
   });
-
   
-
+  
+  
   // adds the event listener to trigger handleRetakeQuizClick
   retakeQuiz.addEventListener('click', handleRetakeQuizClick);
-
+  
 };
   
 
 function handleRetakeQuizClick(){
-  secondsLeft = 10;
+  secondsLeft = 100;
   quizTimer.textContent = `Time: ${secondsLeft}`;
   restartQuiz();    
 }
@@ -249,7 +255,7 @@ function restartQuiz (){
   // document.location.reload();
   currentQuestion = 0;
   currentScore = 0;
-  secondsLeft = 10;
+  secondsLeft = 100;
   startTimer(); 
   
 }
