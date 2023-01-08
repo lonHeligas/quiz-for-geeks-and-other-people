@@ -122,10 +122,15 @@ function quizRunner(){
   for (i=0; i<allQuestions[currentQuestion].answer.length; i++){
     let myBtn = document.createElement('button');
     myBtn.innerText = allQuestions[currentQuestion].answer[i];
+    myBtn.setAttribute("style", "color:white; font-size: 25px; background-color: red; border-radius: 5px; border-color: pink; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)" );
     if(i === allQuestions[currentQuestion].correctAnswer){
       myBtn.setAttribute("correct",true)
+      
     }
     // console.warn(myBtn);
+    // myBtn.addEventListener('mouseover', function(){
+    //   myBtn.setAttribute("style", "background-color:rgb(255, 156, 156) box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.5);")
+    // })
     myBtn.addEventListener("click", checkAnswers)
     quizAnswers.appendChild(myBtn);  
   }  
@@ -202,7 +207,7 @@ function handleSubmitButtonClick(event){
     // runs through the high scores stored in local memory and displays them
     for (i=0; i<hiScores.length; i++){  
       let myHiScore = document.createElement('li');
-      myHiScore.textContent = ` ${hiScores[i].playerInitials} ${hiScores[i].playerScore}`;
+      myHiScore.textContent = `Score: ${hiScores[i].playerScore} -  ${hiScores[i].playerInitials}`;
       highScoreLine.appendChild(myHiScore);    
     }  
 

@@ -25,9 +25,11 @@ body {
   position: absolute;
   right: 0;  
   border-radius: 10px 0px 0px 10px;
+  box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.46);
 }
 
 #go-to-hiscore {
+  user-select: none;
   color: rgb(255, 255, 255);
   background-color: rgb(17, 0, 128);
   padding-top: 5px;
@@ -37,6 +39,14 @@ body {
   position: absolute;
   left: 0;  
   border-radius: 0px 10px 10px 0px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
+  box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.46);
+}
+#go-to-hiscore:hover {
+  transition-duration: 0.4s;
+  background-color:rgb(193, 14, 14);
+  
+  
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -85,6 +95,72 @@ h1, h2, h3, h4, h5, h6, p {
   
 }
 
+#submit-button {
+  text-shadow: 1px 1px 2px black;  
+  color: white;
+  border-color: pink;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color:red;
+  transition-duration: 0.4s;
+  width: 125px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#submit-button button:hover {
+  background-color:rgb(255, 156, 156);
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.5);
+}
+
+#retake-quiz {
+  text-shadow: 1px 1px 2px black;  
+  color: white;
+  border-color: pink;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color:red;
+  transition-duration: 0.4s;
+  width: 125px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#retake-quiz button:hover {
+  background-color:rgb(255, 156, 156);
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.5);
+  
+}
+#clear-hiscores {
+  text-shadow: 1px 1px 2px black;  
+  color: white;
+  border-color: pink;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color:red;
+  transition-duration: 0.4s;
+  width: 155px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+
+#high-score-board {  
+  color: white;
+  text-shadow: 1px 1px 2px black;  
+  font-size: 30px;
+  margin-left: 180px;
+}
+
+#high-score-line {
+  margin-bottom: 20px;
+}
+
+
+
+
+.hover-button {
+  background-color:rgb(255, 156, 156);
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.5);
+}
 
 
 
