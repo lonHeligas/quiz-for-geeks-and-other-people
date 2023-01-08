@@ -27,12 +27,16 @@ let currentQuestion = 0;
 let secondsLeft = 100;
 
 var allQuestions = [
-  // {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["One", "Three", "Two"],correctAnswer: 1},
-  // {questionText: "Babylon 5 aired on what network originally?", answer:["The History Channel", "The WB", "PTEN"], correctAnswer: 2},
-  // {questionText: "In Star Trek IV: The Voyage Home, how did Spock feel?", answer:["Fine", "A little mad", "Total zen"], correctAnswer: 0},
-  // {questionText: "What class of ship was the Serenity?", answer:["Big Ship", "Broadsword", "Hauler", "Firefly"], correctAnswer: 3},
-  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What5!!!", "Where5", "Why5"], correctAnswer: 0},
-  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["What6!!!", "Where6", "Why6"], correctAnswer: 0}
+  {questionText: "How many licks does it take to get to the center of a Tootsie Roll Pop?", answer:["One", "Three", "Two"],correctAnswer: 1},
+  {questionText: "Babylon 5 aired on what network originally?", answer:["The History Channel", "The WB", "PTEN"], correctAnswer: 2},
+  {questionText: "In Star Trek IV: The Voyage Home, how did Spock feel?", answer:["Fine", "A little mad", "Total zen"], correctAnswer: 0},
+  {questionText: "What class of ship was the Serenity?", answer:["Big Ship", "Broadsword", "Hauler", "Firefly"], correctAnswer: 3},
+  {questionText: "Which of the following was NOT an Infinity Stone?", answer:["Mind", "Dimension", "Time", "Power"], correctAnswer: 1},
+  {questionText: "What's the name for the awards for SciFi books?", answer:["There is no award", "The Hugo", "The Rocket Award", "Outer Space 3000"], correctAnswer: 1},
+  {questionText: "How is Discord usually desribed?", answer:["Slack for Gamers!", "Intricate and complex", "Easy to use", "Orange"], correctAnswer: 0},
+  {questionText: "What brand of car did Ferris Bueller borrow from Cameron?", answer:["They rode bikes", "An Edsel", "A Ferrari", "A Chrysler"], correctAnswer: 2},
+  {questionText: "Which highway did the band America drive on?", answer:["I=94", "PCH 1", "Route 66", "Ventura Highway"], correctAnswer: 3},
+  {questionText: "Bob Dylan's song Hurricane is about who/what?", answer:["Hurricaine Katrina", "Rubin Carter", "Global Warming", "Mike Tyson"], correctAnswer: 1}
 ]
 
 let hiScores = localStorage.getItem("playerScoreEntry");
@@ -107,7 +111,7 @@ function quizRunner(){
   // trying to get the quiz to end after you run out of questions
   console.warn(allQuestions.length);
   console.warn(allQuestions[currentQuestion], currentQuestion);
-  if (allQuestions[currentQuestion] == allQuestions.length-1){
+  if (currentQuestion == allQuestions.length-1){
     console.log("it's over!");
     gameOver();
   };  
@@ -220,6 +224,7 @@ function displayHighScores(){
   
   clearHiScores.addEventListener('click', function() {
     localStorage.clear();
+    hiScores = [];
     secondsLeft = 100; 
     highScoreBoard.classList.add('hidden'); 
     startButton.classList.remove('hidden');
